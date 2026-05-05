@@ -1,28 +1,26 @@
-\# Desafio Técnico QA - Testes de API ServeRest
+# Desafio Técnico QA - Testes de API ServeRest
 
+Este repositório contém a solução de um desafio técnico de QA com foco em testes de API.
 
+A entrega contempla:
 
-Projeto desenvolvido para um desafio técnico de QA, com foco em testes de API utilizando Cypress, Gherkin, Postman e Newman.
+- Cenários escritos em Gherkin
+- Automação de testes de API com Cypress
+- Collection Postman
+- Execução da collection com Newman
+- Evidências automáticas em imagem
+- Vídeo da execução dos testes Cypress
+- Relatórios HTML
+- Pipeline com GitHub Actions
+- Publicação do relatório via GitHub Pages
 
+---
 
+## API utilizada
 
-A entrega contempla cenários em Gherkin, automação de API, collection Postman, evidências em imagem, vídeo da execução e relatórios HTML.
+A API utilizada foi a **ServeRest**, uma API pública voltada para estudos e testes de API.
 
-
-
-\## API utilizada
-
-
-
-\*\*ServeRest\*\*
-
-
-
-Base URL:
-
-
+**Base URL:**
 
 ```text
-
 https://serverest.dev
-
