@@ -1,4 +1,4 @@
-name: QA API Tests
+name: Desafio QA - Testes de API
 
 on:
   push:
@@ -13,11 +13,11 @@ on:
 
 jobs:
   api-tests:
-    name: Executar testes de API
+    name: Cypress + Postman/Newman
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar código do repositório
+      - name: Baixar código
         uses: actions/checkout@v4
 
       - name: Configurar Node.js
@@ -35,7 +35,7 @@ jobs:
       - name: Executar collection Postman com Newman
         run: npm run test:postman
 
-      - name: Publicar evidências e relatórios como artefato
+      - name: Publicar evidências e relatórios
         uses: actions/upload-artifact@v4
         if: always()
         with:
