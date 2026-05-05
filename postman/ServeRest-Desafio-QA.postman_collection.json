@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "f14dff82-427e-4c53-a91d-1c3f8f63e1c3",
+    "name": "ServeRest - Desafio QA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "22776601"
+  },
+  "item": [
+    {
+      "name": "CT01 - FB - Cadastrar usuário com sucesso",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code deve ser 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Mensagem de sucesso deve ser validada\", function () {\r",
+              "    pm.expect(response.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Deve retornar o ID do usuário cadastrado\", function () {\r",
+              "    pm.expect(response).to.have.property(\"_id\");\r",
+              "    pm.expect(response._id).to.not.be.empty;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"Usuario QA {{$timestamp}}\",\r\n  \"email\": \"qa{{$timestamp}}@teste.com\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/usuarios",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT02 - FA - Listar usuários cadastrados",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code deve ser 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Deve retornar o campo quantidade\", function () {\r",
+              "    pm.expect(response).to.have.property(\"quantidade\");\r",
+              "    pm.expect(response.quantidade).to.be.a(\"number\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Deve retornar uma lista de usuários\", function () {\r",
+              "    pm.expect(response).to.have.property(\"usuarios\");\r",
+              "    pm.expect(response.usuarios).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Cada usuário deve possuir campos mínimos esperados\", function () {\r",
+              "    response.usuarios.forEach(function (usuario) {\r",
+              "        pm.expect(usuario).to.have.property(\"nome\");\r",
+              "        pm.expect(usuario).to.have.property(\"email\");\r",
+              "        pm.expect(usuario).to.have.property(\"password\");\r",
+              "        pm.expect(usuario).to.have.property(\"administrador\");\r",
+              "        pm.expect(usuario).to.have.property(\"_id\");\r",
+              "    });\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/usuarios",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT03 - Setup - Criar usuário para duplicidade",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Setup deve cadastrar usuário para teste de duplicidade\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "const requestBody = JSON.parse(pm.request.body.raw);\r",
+              "\r",
+              "pm.collectionVariables.set(\"usuarioDuplicadoNome\", requestBody.nome);\r",
+              "pm.collectionVariables.set(\"usuarioDuplicadoEmail\", requestBody.email);\r",
+              "pm.collectionVariables.set(\"usuarioDuplicadoPassword\", requestBody.password);\r",
+              "pm.collectionVariables.set(\"usuarioDuplicadoAdministrador\", requestBody.administrador);\r",
+              "pm.collectionVariables.set(\"usuarioDuplicadoId\", response._id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"Usuario QA {{$timestamp}}\",\r\n  \"email\": \"duplicado{{$timestamp}}@teste.com\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/usuarios",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT03 - FE - Não permitir cadastro com e-mail já existente",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code deve ser 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Deve impedir cadastro com e-mail já existente\", function () {\r",
+              "    pm.expect(response.message).to.eql(\"Este email já está sendo usado\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nome\": \"{{usuarioDuplicadoNome}}\",\r\n  \"email\": \"{{usuarioDuplicadoEmail}}\",\r\n  \"password\": \"{{usuarioDuplicadoPassword}}\",\r\n  \"administrador\": \"{{usuarioDuplicadoAdministrador}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/usuarios",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT04 - FE - Não permitir cadastro sem nome",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code deve ser 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Deve retornar erro de campo obrigatório para nome\", function () {\r",
+              "    pm.expect(response).to.have.property(\"nome\");\r",
+              "    pm.expect(response.nome).to.eql(\"nome é obrigatório\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"qa{{$timestamp}}@teste.com\",\r\n  \"password\": \"teste123\",\r\n  \"administrador\": \"true\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/usuarios",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "usuarioDuplicadoNome",
+      "value": ""
+    },
+    {
+      "key": "usuarioDuplicadoEmail",
+      "value": ""
+    },
+    {
+      "key": "usuarioDuplicadoPassword",
+      "value": ""
+    },
+    {
+      "key": "usuarioDuplicadoAdministrador",
+      "value": ""
+    },
+    {
+      "key": "usuarioDuplicadoId",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "CT04",
+  "tipo": "Fluxo de Exceção",
+  "cenario": "Não permitir cadastro sem nome",
+  "statusTeste": "Aprovado",
+  "metodo": "POST",
+  "endpoint": "/usuarios",
+  "statusHttp": 400,
+  "validacoes": [
+    "Status HTTP 400 validado",
+    "Campo nome obrigatório validado",
+    "Bloqueio de cadastro inválido validado"
+  ],
+  "requestBody": {
+    "email": "qa1777936911877@teste.com",
+    "password": "teste123",
+    "administrador": "true"
+  },
+  "responseBody": {
+    "nome": "nome é obrigatório"
+  },
+  "evidencia": "../screenshots/usuarios.feature/CT04-FE-Nao-permitir-cadastro-sem-nome.png"
+}

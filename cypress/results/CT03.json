@@ -1,0 +1,24 @@
+{
+  "id": "CT03",
+  "tipo": "Fluxo de Exceção",
+  "cenario": "Não permitir cadastro com e-mail já existente",
+  "statusTeste": "Aprovado",
+  "metodo": "POST",
+  "endpoint": "/usuarios",
+  "statusHttp": 400,
+  "validacoes": [
+    "Status HTTP 400 validado",
+    "Mensagem de e-mail duplicado validada",
+    "Bloqueio de cadastro duplicado validado"
+  ],
+  "requestBody": {
+    "nome": "Usuario QA 1777936906168",
+    "email": "qa1777936906168@teste.com",
+    "password": "teste123",
+    "administrador": "true"
+  },
+  "responseBody": {
+    "message": "Este email já está sendo usado"
+  },
+  "evidencia": "../screenshots/usuarios.feature/CT03-FE-Nao-permitir-cadastro-email-duplicado.png"
+}

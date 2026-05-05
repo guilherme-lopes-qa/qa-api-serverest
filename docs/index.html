@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relatório de Execução de Testes - API ServeRest</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      padding: 40px;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+
+    header p {
+      margin: 4px 0;
+      color: #d1d5db;
+    }
+
+    main {
+      padding: 32px 40px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: -24px;
+      margin-bottom: 32px;
+    }
+
+    .summary-card {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 4px;
+    }
+
+    .summary-card span {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin-top: 0;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f9fafb;
+      text-align: left;
+      color: #374151;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    code {
+      background: #f3f4f6;
+      padding: 3px 6px;
+      border-radius: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .method {
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .http {
+      background: #ecfdf5;
+      color: #047857;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .case-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      background: #ffffff;
+    }
+
+    .case-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .case-header h3 {
+      margin: 0 0 6px;
+    }
+
+    .case-header p {
+      margin: 0;
+      color: #6b7280;
+    }
+
+    details {
+      margin-top: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #1f2937;
+    }
+
+    pre {
+      background: #111827;
+      color: #d1d5db;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+
+    a {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .evidence {
+      margin-top: 16px;
+      color: #374151;
+    }
+
+    .observations {
+      line-height: 1.6;
+    }
+
+    footer {
+      padding: 24px 40px;
+      color: #6b7280;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Relatório de Execução de Testes - API ServeRest</h1>
+    <p>Projeto: Desafio Técnico QA - Testes de API</p>
+    <p>Ferramenta: Cypress + Gherkin</p>
+    <p>Data da execução: 04/05/2026, 20:21:57</p>
+  </header>
+
+  <main>
+    <section class="summary">
+      <div class="summary-card">
+        <strong>4</strong>
+        <span>Total de cenários</span>
+      </div>
+
+      <div class="summary-card">
+        <strong>4</strong>
+        <span>Cenários aprovados</span>
+      </div>
+
+      <div class="summary-card">
+        <strong>0</strong>
+        <span>Cenários reprovados</span>
+      </div>
+
+      <div class="summary-card">
+        <strong>100%</strong>
+        <span>Taxa de aprovação</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Resumo da execução</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Cenário</th>
+            <th>Método</th>
+            <th>Endpoint</th>
+            <th>Status HTTP</th>
+            <th>Resultado</th>
+            <th>Evidência</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+    <tr>
+      <td><strong>CT01</strong></td>
+      <td>Fluxo Básico</td>
+      <td>Cadastrar usuário com sucesso</td>
+      <td><span class="method">POST</span></td>
+      <td><code>/usuarios</code></td>
+      <td><span class="http">201</span></td>
+      <td><span class="badge success">Aprovado</span></td>
+      <td><a href="evidencias/CT01-FB-Cadastrar-usuario-com-sucesso.png" target="_blank">Abrir evidência</a></td>
+    </tr>
+  
+    <tr>
+      <td><strong>CT02</strong></td>
+      <td>Fluxo Alternativo</td>
+      <td>Listar usuários cadastrados</td>
+      <td><span class="method">GET</span></td>
+      <td><code>/usuarios</code></td>
+      <td><span class="http">200</span></td>
+      <td><span class="badge success">Aprovado</span></td>
+      <td><a href="evidencias/CT02-FA-Listar-usuarios-cadastrados.png" target="_blank">Abrir evidência</a></td>
+    </tr>
+  
+    <tr>
+      <td><strong>CT03</strong></td>
+      <td>Fluxo de Exceção</td>
+      <td>Não permitir cadastro com e-mail já existente</td>
+      <td><span class="method">POST</span></td>
+      <td><code>/usuarios</code></td>
+      <td><span class="http">400</span></td>
+      <td><span class="badge success">Aprovado</span></td>
+      <td><a href="evidencias/CT03-FE-Nao-permitir-cadastro-email-duplicado.png" target="_blank">Abrir evidência</a></td>
+    </tr>
+  
+    <tr>
+      <td><strong>CT04</strong></td>
+      <td>Fluxo de Exceção</td>
+      <td>Não permitir cadastro sem nome</td>
+      <td><span class="method">POST</span></td>
+      <td><code>/usuarios</code></td>
+      <td><span class="http">400</span></td>
+      <td><span class="badge success">Aprovado</span></td>
+      <td><a href="evidencias/CT04-FE-Nao-permitir-cadastro-sem-nome.png" target="_blank">Abrir evidência</a></td>
+    </tr>
+  
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Detalhamento dos cenários</h2>
+      
+    <section class="case-card">
+      <div class="case-header">
+        <div>
+          <h3>CT01 - Cadastrar usuário com sucesso</h3>
+          <p>Fluxo Básico • POST /usuarios</p>
+        </div>
+        <span class="badge success">Aprovado</span>
+      </div>
+
+      <h4>Validações realizadas</h4>
+      <ul>
+        <li>Status HTTP 201 validado</li><li>Mensagem de sucesso validada</li><li>ID do usuário validado</li>
+      </ul>
+
+      <details>
+        <summary>Request Body</summary>
+        <pre>{
+  &quot;nome&quot;: &quot;Usuario QA 1777936896739&quot;,
+  &quot;email&quot;: &quot;qa1777936896739@teste.com&quot;,
+  &quot;password&quot;: &quot;teste123&quot;,
+  &quot;administrador&quot;: &quot;true&quot;
+}</pre>
+      </details>
+
+      <details>
+        <summary>Response Body</summary>
+        <pre>{
+  &quot;message&quot;: &quot;Cadastro realizado com sucesso&quot;,
+  &quot;_id&quot;: &quot;HasIpFbpEuBqNL7U&quot;
+}</pre>
+      </details>
+
+      <p class="evidence">
+        Evidência: <a href="evidencias/CT01-FB-Cadastrar-usuario-com-sucesso.png" target="_blank">evidencias/CT01-FB-Cadastrar-usuario-com-sucesso.png</a>
+      </p>
+    </section>
+  
+    <section class="case-card">
+      <div class="case-header">
+        <div>
+          <h3>CT02 - Listar usuários cadastrados</h3>
+          <p>Fluxo Alternativo • GET /usuarios</p>
+        </div>
+        <span class="badge success">Aprovado</span>
+      </div>
+
+      <h4>Validações realizadas</h4>
+      <ul>
+        <li>Status HTTP 200 validado</li><li>Campo quantidade validado</li><li>Lista de usuários validada</li>
+      </ul>
+
+      <details>
+        <summary>Request Body</summary>
+        <pre>{}</pre>
+      </details>
+
+      <details>
+        <summary>Response Body</summary>
+        <pre>{
+  &quot;quantidade&quot;: 466,
+  &quot;exemploPrimeiroRegistro&quot;: {
+    &quot;nome&quot;: &quot;[test-user] Pink Hudson&quot;,
+    &quot;email&quot;: &quot;barry32@test.net&quot;,
+    &quot;password&quot;: &quot;T1!nnSb0TYX6&quot;,
+    &quot;administrador&quot;: &quot;true&quot;,
+    &quot;_id&quot;: &quot;0HSA00iTRPTXK46d&quot;
+  }
+}</pre>
+      </details>
+
+      <p class="evidence">
+        Evidência: <a href="evidencias/CT02-FA-Listar-usuarios-cadastrados.png" target="_blank">evidencias/CT02-FA-Listar-usuarios-cadastrados.png</a>
+      </p>
+    </section>
+  
+    <section class="case-card">
+      <div class="case-header">
+        <div>
+          <h3>CT03 - Não permitir cadastro com e-mail já existente</h3>
+          <p>Fluxo de Exceção • POST /usuarios</p>
+        </div>
+        <span class="badge success">Aprovado</span>
+      </div>
+
+      <h4>Validações realizadas</h4>
+      <ul>
+        <li>Status HTTP 400 validado</li><li>Mensagem de e-mail duplicado validada</li><li>Bloqueio de cadastro duplicado validado</li>
+      </ul>
+
+      <details>
+        <summary>Request Body</summary>
+        <pre>{
+  &quot;nome&quot;: &quot;Usuario QA 1777936906168&quot;,
+  &quot;email&quot;: &quot;qa1777936906168@teste.com&quot;,
+  &quot;password&quot;: &quot;teste123&quot;,
+  &quot;administrador&quot;: &quot;true&quot;
+}</pre>
+      </details>
+
+      <details>
+        <summary>Response Body</summary>
+        <pre>{
+  &quot;message&quot;: &quot;Este email já está sendo usado&quot;
+}</pre>
+      </details>
+
+      <p class="evidence">
+        Evidência: <a href="evidencias/CT03-FE-Nao-permitir-cadastro-email-duplicado.png" target="_blank">evidencias/CT03-FE-Nao-permitir-cadastro-email-duplicado.png</a>
+      </p>
+    </section>
+  
+    <section class="case-card">
+      <div class="case-header">
+        <div>
+          <h3>CT04 - Não permitir cadastro sem nome</h3>
+          <p>Fluxo de Exceção • POST /usuarios</p>
+        </div>
+        <span class="badge success">Aprovado</span>
+      </div>
+
+      <h4>Validações realizadas</h4>
+      <ul>
+        <li>Status HTTP 400 validado</li><li>Campo nome obrigatório validado</li><li>Bloqueio de cadastro inválido validado</li>
+      </ul>
+
+      <details>
+        <summary>Request Body</summary>
+        <pre>{
+  &quot;email&quot;: &quot;qa1777936911877@teste.com&quot;,
+  &quot;password&quot;: &quot;teste123&quot;,
+  &quot;administrador&quot;: &quot;true&quot;
+}</pre>
+      </details>
+
+      <details>
+        <summary>Response Body</summary>
+        <pre>{
+  &quot;nome&quot;: &quot;nome é obrigatório&quot;
+}</pre>
+      </details>
+
+      <p class="evidence">
+        Evidência: <a href="evidencias/CT04-FE-Nao-permitir-cadastro-sem-nome.png" target="_blank">evidencias/CT04-FE-Nao-permitir-cadastro-sem-nome.png</a>
+      </p>
+    </section>
+  
+    </section>
+
+    <section class="section observations">
+      <h2>Observações finais</h2>
+      <p>
+        A suíte automatizada validou os principais comportamentos da rota de usuários da API ServeRest,
+        contemplando fluxo básico, fluxo alternativo e fluxos de exceção.
+      </p>
+      <p>
+        Foram validados status HTTP, mensagens de retorno, campos obrigatórios, estrutura mínima de resposta
+        e regras funcionais relacionadas ao cadastro de usuários.
+      </p>
+      <p>
+        As evidências foram geradas durante a execução dos testes e vinculadas aos respectivos cenários.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Relatório de execução dos testes automatizados.
+  </footer>
+</body>
+</html>

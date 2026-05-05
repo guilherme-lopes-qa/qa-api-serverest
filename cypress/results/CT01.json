@@ -1,0 +1,25 @@
+{
+  "id": "CT01",
+  "tipo": "Fluxo Básico",
+  "cenario": "Cadastrar usuário com sucesso",
+  "statusTeste": "Aprovado",
+  "metodo": "POST",
+  "endpoint": "/usuarios",
+  "statusHttp": 201,
+  "validacoes": [
+    "Status HTTP 201 validado",
+    "Mensagem de sucesso validada",
+    "ID do usuário validado"
+  ],
+  "requestBody": {
+    "nome": "Usuario QA 1777936896739",
+    "email": "qa1777936896739@teste.com",
+    "password": "teste123",
+    "administrador": "true"
+  },
+  "responseBody": {
+    "message": "Cadastro realizado com sucesso",
+    "_id": "HasIpFbpEuBqNL7U"
+  },
+  "evidencia": "../screenshots/usuarios.feature/CT01-FB-Cadastrar-usuario-com-sucesso.png"
+}

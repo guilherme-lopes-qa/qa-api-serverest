@@ -1,0 +1,26 @@
+{
+  "id": "CT02",
+  "tipo": "Fluxo Alternativo",
+  "cenario": "Listar usuários cadastrados",
+  "statusTeste": "Aprovado",
+  "metodo": "GET",
+  "endpoint": "/usuarios",
+  "statusHttp": 200,
+  "validacoes": [
+    "Status HTTP 200 validado",
+    "Campo quantidade validado",
+    "Lista de usuários validada"
+  ],
+  "requestBody": null,
+  "responseBody": {
+    "quantidade": 466,
+    "exemploPrimeiroRegistro": {
+      "nome": "[test-user] Pink Hudson",
+      "email": "barry32@test.net",
+      "password": "T1!nnSb0TYX6",
+      "administrador": "true",
+      "_id": "0HSA00iTRPTXK46d"
+    }
+  },
+  "evidencia": "../screenshots/usuarios.feature/CT02-FA-Listar-usuarios-cadastrados.png"
+}
