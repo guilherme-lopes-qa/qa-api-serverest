@@ -1,0 +1,49 @@
+name: QA API Tests
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  api-tests:
+    name: Executar testes de API
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes Cypress e gerar relatório
+        run: npm run clean:test
+
+      - name: Executar collection Postman com Newman
+        run: npm run test:postman
+
+      - name: Publicar evidências e relatórios como artefato
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidencias-relatorios-qa
+          path: |
+            cypress/screenshots/
+            cypress/videos/
+            cypress/reports/
+            cypress/results/
+            postman/reports/
+            docs/
